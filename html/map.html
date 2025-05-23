@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incident Map</title>
+
+  <!-- css for the css (it has to be first this, bcs the second won't load) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+e2F6wC2Vf1o2qQK3hJ0YimfA9tY3V0vDPCf1o4ro="
+    crossorigin=""
+  />
+
+  <!-- Custom CSS for the map -->
+  <link rel="stylesheet" href="../css/map.css" />
+</head>
+<body>
+  <h1>Live Incident Map</h1>
+
+  <!-- Map box, outline -->
+  <div id="map"></div> <!-- The map will be in the box and in the div -->
+
+  <!-- leatlef for js, it has to be here -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1j7k/r7ltQOE6L4ZYa5CkNJq2IJaeqk8xZr1LkKU="
+    crossorigin=""
+  ></script>
+
+  <!-- normal JS, for compactable  -->
+  <script src="../javascript/map.js"></script>
+</body>
+</html>
