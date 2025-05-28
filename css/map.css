@@ -61,9 +61,44 @@
   
   #map {
     height: 600px;
-    width: 90%;
+    width: 1000px;
     margin: 20px auto;
     border: 2px solid #444;
     border-radius: 8px;
+    z-index: 1;
   }
-  
+  #modal {
+    display: none;
+    position: fixed;
+    background: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 100;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+  }
+  #modal input, textarea {
+    width: 100%;
+  }
+  #overlay {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+    top: 0;
+    left: 0;
+  }
+    #modalDelete {
+    display: none;
+    position: fixed;
+    background: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 100;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+  }

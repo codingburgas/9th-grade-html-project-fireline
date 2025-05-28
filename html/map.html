@@ -6,12 +6,10 @@
   <title>Incident Map</title>
 
   <!-- css for the css (it has to be first this, bcs the second won't load) -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+e2F6wC2Vf1o2qQK3hJ0YimfA9tY3V0vDPCf1o4ro="
-    crossorigin=""
-  />
+<link rel="stylesheet" 
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+    crossorigin="" />
 
   <!-- Custom CSS for the map -->
   <link rel="stylesheet" href="../css/map.css" />
@@ -21,13 +19,28 @@
 
   <!-- Map box, outline -->
   <div id="map"></div> <!-- The map will be in the box and in the div -->
-
-  <!-- leatlef for js, it has to be here -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-o9N1j7k/r7ltQOE6L4ZYa5CkNJq2IJaeqk8xZr1LkKU="
-    crossorigin=""
-  ></script>
+  <!-- leatlet for js, it has to be here -->
+   <div id="overlay">
+       </div>
+    <div id="modal">
+      <h3>Add a marker</h3>
+      <input id="markerTitle" type="text">
+      <textarea id="description"></textarea>
+      <div id="modal-buttons">
+        <button onclick="addMarker()">Add</button>
+        <button onclick="closeModal()">Close</button>
+      </div>
+    </div>
+    <div id="modalDelete">
+      <h3>Are you sure</h3>
+      <div id="modalDeleteButton">
+        <button onclick="confirmDelete()">Okay</button>
+        <button onclick="closeModalDelete()">Cancel</button>
+      </div>
+    </div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+    crossorigin=""></script>
 
   <!-- normal JS, for compactable  -->
   <script src="../javascript/map.js"></script>
