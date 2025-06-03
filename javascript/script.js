@@ -1,10 +1,20 @@
-function darkmode() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-  }
+let darkmode = localStorage.getItem('darkmode')
+const themeswitch = document.getElementById('theme-switch')
 
-
-  function showForm(formId){
-    document.querySelectorAll(".form-box").forEach(form => form.classList.remove("active"));
-    document.getElementById(formId).classList.add("active");
+const enableDarkMode = () =>
+{
+  document.body.classList.add('darkmode')
+  localStorage.setItem('darkmode', 'active')
 }
+const disableDarkMode = () =>
+{
+  document.body.classList.remove('darkmode')
+  localStorage.setItem('darkmode', null)
+}
+
+if(darkmode === 'active') enableDarkMode()
+
+themeswitch.addEventListener("click", () => {
+  darkmode = localStorage.getItem('darkmode')
+  darkmode !== "active" ? enableDarkMode() : disableDarkMode()
+})

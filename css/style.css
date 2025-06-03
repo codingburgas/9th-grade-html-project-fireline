@@ -1,3 +1,10 @@
+:root{
+  --base-color: #dfcba1;
+  --secondary-color: #c4b390;
+  --text-color: black;
+  --button-bg-color:#331111;
+  --button-fill-color: #882727;
+}
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +13,30 @@
   
   body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: var(--base-color);
+    color:var(--text-color);
+    text-align:center;
+    margin-top:150px
   }
-  
+  .header1
+  {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size:85px;
+    letter-spacing:4px;
+  }
+  .text
+  {
+    font-family:monospace;
+    font-size:20px;
+  }
   .navbar {
-    background-color: #008bfc;
+    background-color: #611212;
     padding: 1% 3%;
     box-shadow: 0 0.5% 1% rgba(0, 0, 0, 0.4);
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:2;
   }
   
   .nav-container {
@@ -20,13 +44,15 @@
     align-items: center;
     justify-content: flex-start;
     gap: 3%; /*the gap between text in the navbar*/
+    z-index:2;
+
   }
   
   .logo {
     font-size: 300%;
     font-weight:600;
     color: color-mix(in srgb, white 80%, red 50%);
-    background: -webkit-linear-gradient(#ff5100, #000000); /*the text*/
+    background: -webkit-linear-gradient(#e93407, #ff952b); /*the text*/
     -webkit-background-clip: text; /*make the bg color, to be on the text */
     -webkit-text-fill-color: transparent; /*make text transparent, to releal the bg color */
   }
@@ -46,12 +72,105 @@
   }
   
   .nav-links li a:hover {
-    color: #5f0008;
+    color: #ec7404;
   }
-  .dark-mode { /*dark-light mode*/
-    background-color: black;
-    color: white;
-    
 
+
+  .darkmode { /*dark-light mode*/
+    --base-color: rgb(24, 5, 5);
+    --secondary-color: #331111;
+    --text-color: rgb(253, 255, 219);
+    --button-bg-color:#882727;
+    --button-fill-color: #331111;
   }
-  
+
+  #theme-switch{
+    height:45px;
+    width:45px;
+    padding:0;
+    border-radius:50%;
+    background-color: var(--button-bg-color);
+    display:flex;
+    justify-content:center;
+    align-content:center;
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:3;
+  }
+  #theme-switch svg{
+    fill: var(--button-fill-color);
+  }
+  #theme-switch svg:last-child{
+    display:none;
+  }
+  .darkmode #theme-switch svg:first-child{
+    display:none;
+  }
+  .darkmode #theme-switch svg:last-child{
+    display:block;
+  }
+  .box
+  {
+    background-color: var(--secondary-color);
+    position:relative;
+  }
+  /*.box2
+  {
+    background-color: var(--secondary-color);
+    top:80px;
+    left:150px;
+    position:relative;
+  }*/
+  /*.box3
+  {
+    background-color: var(--secondary-color);
+    top:80px;
+    right:-180px;
+    position:relative;
+    border:20px;
+  }
+    */
+  .grid-container1{
+    margin-top:80px;
+    margin-bottom:150px;
+    align-content:center;
+    justify-content:center;
+    display:grid;
+    grid-auto-columns: 210px ;
+    grid-auto-rows: 210px;
+    gap:2em;
+    grid-template-areas:
+      "box-1 box-1 box-2 box-2 box-2 box-3 box-3"
+      "box-1 box-1 box-2 box-2 box-2 box-3 box-3";
+      text-align:center;
+    }
+      .grid-container2{
+    margin-top:80px;
+    margin-bottom:150px;
+    align-content:center;
+    justify-content:center;
+    display:grid;
+    grid-auto-columns: 230px ;
+    grid-auto-rows: 230px;
+    gap:2em;
+    grid-template-areas:
+      "box-1 box-1 box-2 box-2 box-3 box-3"
+      "box-1 box-1 box-2 box-2 box-3 box-3";
+      text-align:center;
+    }
+    p{
+      margin:15px;
+      font-size:18px;
+    }
+    .par{
+      margin-left:80px;
+      margin-right:80px;
+    }
+    footer{
+      background-color:var(--secondary-color);
+      height:80px;
+      width:100%;
+      bottom:0;
+      margin-top:30px;
+    }
