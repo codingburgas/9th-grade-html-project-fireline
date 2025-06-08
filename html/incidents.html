@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incident Reporting System</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="../css/incidents.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">Fireline</div>
+    
+          <ul class="nav-links">
+    
+            <li><a href="homeA.php">Home</a></li>
+            <li><a href="incidents.html">Incidents</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="personnel.html">Personnel</a></li>
+            <li><a href="vehicles.html">Vehicles</a></li>
+            <li><a href="teams.html">Teams</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+            <li><a href="messages.html">Messages</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="app-main">
+      <section class="map-section">
+        <div id="map"></div>
+        <button id="reportBtn" class="btn-primary">Report Incident</button>
+      </section>
+      <aside class="form-section">
+        <div class="form-card">
+          <h2>New Incident</h2>
+          <div class="form-group">
+            <label for="markerTitle">Title</label>
+            <input id="markerTitle" type="text" placeholder="Enter incident title" />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" rows="4" placeholder="Describe the incident..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="severity">Severity</label>
+              <select id="severity">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="people">People Affected</label>
+              <input id="people" type="number" min="0" placeholder="0" />
+            </div>
+          </div>
+          <button id="addBtn" class="btn-success">Add Incident</button>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="../javascript/incidents.js"></script>
+</body>
+</html>
