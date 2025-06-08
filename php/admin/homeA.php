@@ -27,8 +27,8 @@ function isActiveForm($formName, $activeForm){
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fireline Main Page</title>
-  <link rel="stylesheet" href="../../css/style.css">
-</head>
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
+</head> 
 <body>
   <script src="../../javascript/script.js"></script>
   <nav class="navbar">
