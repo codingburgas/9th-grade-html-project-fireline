@@ -1,65 +1,61 @@
-// Initialize map
-const map = L.map('map').setView([42.5, 27.5], 9);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+document.addEventListener('DOMContentLoaded', () => {
+  const map = L.map('map').setView([42.5, 27.5], 9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
 
-let reporting = false;
-let coords = null;
+  let awaitingLocation = false;
+  let selectedCoords = null;
 
-// Elements
-const reportBtn = document.getElementById('reportBtn');
-const addBtn    = document.getElementById('addBtn');
-const titleEl   = document.getElementById('markerTitle');
-const descEl    = document.getElementById('description');
-const sevEl     = document.getElementById('severity');
-const pplEl     = document.getElementById('people');
+  const reportBtn   = document.getElementById('reportBtn');
+  const addBtn      = document.getElementById('addBtn');
+  const formSection = document.getElementById('formSection');
+  const titleEl     = document.getElementById('markerTitle');
+  const descEl      = document.getElementById('description');
+  const sevEl       = document.getElementById('severity');
+  const pplEl       = document.getElementById('people');
 
-// Enable reporting
-reportBtn.addEventListener('click', () => {
-  reporting = true;
-  alert('Click on map to choose incident location.');
-});
+  reportBtn.addEventListener('click', () => {
+    awaitingLocation = true;
+    reportBtn.textContent = 'Click on the map…';
+  });
 
-// Map click handler
-map.on('click', e => {
-  if (!reporting) return;
-  coords = e.latlng;
-  reportBtn.textContent = 'Location Selected';
-});
+  map.on('click', e => {
+    if (!awaitingLocation) return;
+    selectedCoords = e.latlng;
+    awaitingLocation = false;
+    reportBtn.textContent = 'Selected';
+    formSection.classList.add('visible');
+  });
 
-// Add incident
-addBtn.addEventListener('click', () => {
-  if (!coords) {
-    alert('Please select location on map first.');
-    return;
-  }
+  addBtn.addEventListener('click', () => {
+    if (!selectedCoords) {
+      alert('Select a location first');
+      return;
+    }
+    const title = titleEl.value.trim();
+    const desc  = descEl.value.trim();
+    const ppl   = pplEl.value.trim();
+    if (!title || !desc || !ppl) {
+      alert('All fields required');
+      return;
+    }
 
-  const title = titleEl.value.trim();
-  const desc  = descEl.value.trim();
-  const sev   = sevEl.value;
-  const ppl   = pplEl.value.trim();
+    const popup = `
+      <h3>${title}</h3>
+      <p>${desc}</p>
+      <p><strong>Severity:</strong> ${sevEl.value}</p>
+      <p><strong>People Affected:</strong> ${ppl}</p>
+    `;
+    L.marker(selectedCoords).addTo(map).bindPopup(popup).openPopup();
 
-  if (!title || !desc || !ppl) {
-    alert('All fields are required.');
-    return;
-  }
-
-  const popup = `
-    <h3>${title}</h3>
-    <p>${desc}</p>
-    <p><strong>Severity:</strong> ${sev}</p>
-    <p><strong>People Affected:</strong> ${ppl}</p>
-  `;
-
-  L.marker(coords).addTo(map).bindPopup(popup);
-
-  // Reset form
-  titleEl.value = '';
-  descEl.value  = '';
-  sevEl.selectedIndex = 0;
-  pplEl.value   = '';
-  coords        = null;
-  reporting     = false;
-  reportBtn.textContent = 'Report Incident';
+    // reset
+    titleEl.value = '';
+    descEl.value  = '';
+    sevEl.selectedIndex = 0;
+    pplEl.value   = '';
+    selectedCoords = null;
+    reportBtn.textContent = 'Report Incident';
+    formSection.classList.remove('visible');
+  });
 });

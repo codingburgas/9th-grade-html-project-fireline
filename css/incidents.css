@@ -1,124 +1,169 @@
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-  }
-   .navbar {
-    background-color: #611212;
-    padding: 1% 3%;
-    box-shadow: 0 0.5% 1% rgba(0, 0, 0, 0.4);
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:2;
-  }
-  .app-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .app-header {
-    background: #4a90e2;
-    color: #fff;
-    padding: 2%;
-    text-align: center;
-  }
-  .app-main {
-    display: flex;
-    flex: 1;
-  }
-  .map-section {
-    flex: 0.5;
-    position: relative;
-  }
-  .form-section {
-    flex: 0.3;
-    background: #fff;
-    padding: 4%;
-    overflow-y: auto;
-    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
-    justify-content: left;
-    align-items:self-end;
-  }
-  #map {
-    width: 100%;
-    height: 100%;
-  }
-  .btn-primary,
-  .btn-success {
-    padding: 1% 20%;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
-  }
-  .btn-primary {
-    background: #4a90e2;
-    color: #fff;
-    position: absolute;
-    top: 1%;
-    left: 1%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-  .btn-primary:hover {
-    background: #357ab8;
-  }
-  .btn-success {
-    background: #50e3c2;
-    color: #fff;
-    width: 100%;
-    margin-top: 3%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-size: 125%;
-    padding: 5% 2%;
-  }
-  .btn-success:hover {
-    background: #3bbfa1;
-  }
-  .form-card {
-    width: 200%;
-    max-width: 100%;
-  }
-  .form-card h2 {
-    margin-bottom: 3%;
-    color: #333;
-    font-size: 300%;
-    text-align: center;
-  }
-  .form-group {
-    margin-bottom: 6%;
-  }
-  .form-group label {
-    display: block;
-    margin-bottom: 0.75%;
-    color: #555;
-    font-size: 150%;
-  }
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    width: 100%;
-    padding: 4%;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 150%;
-    transition: box-shadow 0.2s ease;
-    resize: vertical;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.4);
-  }
-  .form-row {
-    display: flex;
-    gap: 20%;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;/* Base */
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: #dfcba1;
+  color: #000000;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #611212;
+  padding: 1% 1%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  width: 200%;
+  z-index: 30%; /*specifies the stack order of an element*/
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 1%;
+}
+
+.logo {
+  font-size: 200%;
+  font-weight: 600;
+  background: linear-gradient(#e93407, #ff952b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 10%;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #cd3744;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ec7404;
+}
+
+
+.app-container { /* Layout  */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  margin-top: 60px; /* leaviing room for navbar */
+}
+
+.app-main {
+  display: flex;
+  margin-top: 20px;
+  height: calc(11000px - 80px);
+}
+
+
+.map-section {/* Map position */
+  flex: 1;
+  position: relative;
+}
+
+#map {  /*map size*/
+  width: 100%;
+  height: 100%;
+}
+
+/* Report button */
+#reportBtn {
+  position: absolute;
+  top: 2%;
+  left: 3.5%; 
+  z-index: 1000;
+  padding: 8px 16px;
+  font-size: 20px;
+  background: #d32f2f;
+  color: #fff9f9;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#reportBtn:hover {
+  background: #b71c1c;
+}
+
+/* ========== Form Section ========== */
+.form-section {
+  width: 350px;
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: -4px 0 8px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  display: none;
+}
+
+.form-section.visible {
+  display: block;
+}
+
+.form-card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Form fields */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Add Incident button */
+.btn-success {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background: #50e3c2;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-success:hover {
+  background: #3bbfa1;
+}
