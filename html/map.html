@@ -1,48 +1,53 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Incident Map</title>
-
-  <!-- css for the css (it has to be first this, bcs the second won't load) -->
-<link rel="stylesheet" 
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
-    crossorigin="" />
-
-  <!-- Custom CSS for the map -->
-  <link rel="stylesheet" href="../css/map.css" />
+  <link rel="stylesheet" href="../css/incidents.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-  <h1>Live Incident Map</h1>
+  <div class="app-container">
+    <header class="app-header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">Fireline</div>
+          <ul class="nav-links">
+            <li><a href="homeA.php">Home</a></li>
+            <li><a href="incidents.html">Incidents</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="teams.html">Teams</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+            <li><a href="messages.html">Messages</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><button id="theme-switch">🌓</button></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-  <!-- Map box, outline -->
-  <div id="map"></div> <!-- The map will be in the box and in the div -->
-  <!-- leatlet for js, it has to be here -->
-   <div id="overlay">
-       </div>
-    <div id="modal">
-      <h3>Add a marker</h3>
-      <input id="markerTitle" type="text">
-      <textarea id="description"></textarea>
-      <div id="modal-buttons">
-        <button onclick="addMarker()">Add</button>
-        <button onclick="closeModal()">Close</button>
-      </div>
-    </div>
-    <div id="modalDelete">
-      <h3>Are you sure</h3>
-      <div id="modalDeleteButton">
-        <button onclick="confirmDelete()">Okay</button>
-        <button onclick="closeModalDelete()">Cancel</button>
-      </div>
-    </div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
-    crossorigin=""></script>
+    <main class="app-main">
+      <section class="map-section">
+        <button id="reportBtn" class="btn-primary" onclick="window.location.href='incidents.html'">Add Incident</button>
+        <div id="map"></div>
+      </section>
 
-  <!-- normal JS, for compactable  -->
+      <aside class="form-section visible">
+        <div class="form-card">
+          <h2>Legend</h2>
+          <div class="form-group">
+            <p>🔥 Fire</p>
+            <p>🚗 Accident</p>
+            <p>🌊 Flood</p>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="../javascript/map.js"></script>
 </body>
 </html>

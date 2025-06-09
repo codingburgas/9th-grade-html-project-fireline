@@ -1,61 +1,51 @@
+
 document.addEventListener('DOMContentLoaded', () => {
-  const map = L.map('map').setView([42.5, 27.5], 9);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
+  const map = L.map('map').setView([42.7, 23.3], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  let awaitingLocation = false;
   let selectedCoords = null;
 
-  const reportBtn   = document.getElementById('reportBtn');
-  const addBtn      = document.getElementById('addBtn');
-  const formSection = document.getElementById('formSection');
-  const titleEl     = document.getElementById('markerTitle');
-  const descEl      = document.getElementById('description');
-  const sevEl       = document.getElementById('severity');
-  const pplEl       = document.getElementById('people');
-
-  reportBtn.addEventListener('click', () => {
-    awaitingLocation = true;
-    reportBtn.textContent = 'Click on the map…';
-  });
-
-  map.on('click', e => {
-    if (!awaitingLocation) return;
+  map.on('click', function(e) {
     selectedCoords = e.latlng;
-    awaitingLocation = false;
-    reportBtn.textContent = 'Selected';
-    formSection.classList.add('visible');
+    alert("Location selected");
   });
 
-  addBtn.addEventListener('click', () => {
-    if (!selectedCoords) {
-      alert('Select a location first');
-      return;
-    }
-    const title = titleEl.value.trim();
-    const desc  = descEl.value.trim();
-    const ppl   = pplEl.value.trim();
-    if (!title || !desc || !ppl) {
-      alert('All fields required');
+  document.getElementById('addBtn').addEventListener('click', () => {
+    const title = document.getElementById('markerTitle').value.trim();
+    const description = document.getElementById('description').value.trim();
+    const severity = document.getElementById('severity').value;
+    const people = document.getElementById('people').value;
+    const type = document.getElementById('type').value;
+
+    if (!selectedCoords || !title || !description || !people) {
+      alert('Please fill all fields and select a location on the map.');
       return;
     }
 
-    const popup = `
-      <h3>${title}</h3>
-      <p>${desc}</p>
-      <p><strong>Severity:</strong> ${sevEl.value}</p>
-      <p><strong>People Affected:</strong> ${ppl}</p>
-    `;
-    L.marker(selectedCoords).addTo(map).bindPopup(popup).openPopup();
-
-    // reset
-    titleEl.value = '';
-    descEl.value  = '';
-    sevEl.selectedIndex = 0;
-    pplEl.value   = '';
-    selectedCoords = null;
-    reportBtn.textContent = 'Report Incident';
-    formSection.classList.remove('visible');
+    fetch('../php/save_incident.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title,
+        description,
+        severity,
+        people,
+        type,
+        lat: selectedCoords.lat,
+        lng: selectedCoords.lng
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'success') {
+        alert('Incident submitted.');
+        window.location.href = '../html/map.html';
+      } else {
+        alert('Error saving: ' + data.error);
+      }
+    });
   });
 });
