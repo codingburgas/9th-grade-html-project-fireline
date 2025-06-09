@@ -22,17 +22,16 @@ function isActiveForm($formName, $activeForm){
 
 
 <!DOCTYPE html>
-<!DOCTYPE html>Add commentMore actions
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fireline Main Page</title>
 
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-  <script type="text/javascript" src="../javascript/script.js" defer></script>
+  <script type="text/javascript" src="../../javascript/script.js" defer></script>
 
   <nav class="navbar">
     <div class="nav-container">
@@ -40,15 +39,15 @@ function isActiveForm($formName, $activeForm){
 
       <ul class="nav-links">
 
-        <li><a href="homeA.php">Home</a></li>
-        <li><a href="incidents.html">Incidents</a></li>
-        <li><a href="map.html">Map</a></li>
-        <li><a href="personnel.html">Personnel</a></li>
-        <li><a href="vehicles.html">Vehicles</a></li>
-        <li><a href="teams.html">Teams</a></li>
-        <li><a href="statistics.html">Statistics</a></li>
-        <li><a href="messages.html">Messages</a></li>
-        <li><a href="settings.html">Settings</a></li>
+        <li><a href="homeU.php">Home</a></li>
+        <li><a href="../../html/incidents.html">Incidents</a></li>
+        <li><a href="../../html/map.html">Map</a></li>
+        <li><a href="../../html/personnel.html">Personnel</a></li>
+        <li><a href="../../html/vehicles.html">Vehicles</a></li>
+        <li><a href="../../html/teams.html">Teams</a></li>
+        <li><a href="../../html/statistics.html">Statistics</a></li>
+        <li><a href="../../html/messages.html">Messages</a></li>
+        <li><a href="../../html/settings.html">Settings</a></li>
         
       </ul>
     </div>
