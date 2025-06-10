@@ -79,7 +79,7 @@
 | Name | Role | Grade |
 | :---:   | :---: | :---: |
 |  <h3><a href = "https://github.com/RFHristova23">Roberta Hristova</a></h3> | Scrum Trainer | 9B |
-| <h3><a href = "https://github.com/DVMoldovanov23"> Daniil Moldovanov </a></h3>| Backend Developer | 9V |
+| <h3><a href = "https://github.com/DVMoldovanov23"> Daniil Moldovanov </a></h3>| Frontend Developer | 9V |
 | <h3><a href = "https://github.com/KSTurmanov"> Konstantin Turmanov</a></h3> |  Backend Developer  | 9A |
 | <h3><a href = "https://github.com/AODorosh23"> Amelia Dorosh</a></h3> | Designer | 9G |
 
