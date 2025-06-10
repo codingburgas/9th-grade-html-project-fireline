@@ -53,11 +53,6 @@ function isActiveForm($formName, $activeForm){
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <select name="role" required>
-                    <option value="">Select Role(vremenno)</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
                 <button type="submit" name="register">Register</button>
                 <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
             </form>
