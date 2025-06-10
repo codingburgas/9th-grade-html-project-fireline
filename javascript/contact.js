@@ -1,18 +1,30 @@
+
+
+let darkmode = localStorage.getItem('darkmode')
+const themeswitch = document.getElementById('theme-switch')
+
+const enableDarkMode = () =>
+{
+  document.body.classList.add('darkmode')
+  localStorage.setItem('darkmode', 'active')
+}
+const disableDarkMode = () =>
+{
+  document.body.classList.remove('darkmode')
+  localStorage.setItem('darkmode', null)
+}
+
+if(darkmode === 'active') enableDarkMode()
+
+themeswitch.addEventListener("click", () => {
+  darkmode = localStorage.getItem('darkmode')
+  darkmode !== "active" ? enableDarkMode() : disableDarkMode()
+})
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    const savedTheme = localStorage.getItem('theme');
-    const initialTheme = savedTheme || 'light';
-    html.setAttribute('data-theme', initialTheme);
-    toggle.textContent = initialTheme === 'light' ? '🌙' : '☀️';
-  
-    toggle.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
-      html.setAttribute('data-theme', next);
-      toggle.textContent = next === 'light' ? '🌙' : '☀️';
-      localStorage.setItem('theme', next);
-    });
+
+
   
     const messageField = document.getElementById('message');
     const countDisplay = document.getElementById('char-count');

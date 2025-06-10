@@ -1,27 +1,11 @@
 /* Коренни променливи и цветова схема */
 :root {
-  --primary: #e93407;
-  --secondary: #ff952b;
-  --bg-light: #f9f9f9;
-  --bg-dark: #222222;
-  --card-bg-light: rgba(255,255,255,0.9);
-  --card-bg-dark: rgba(20,20,20,0.9);
-  --text-light: #222222;
-  --text-dark: #eeeeee;
+  --base-color: #dfcba1;
+  --secondary-color: #c4b390;
+  --text-color: black;
+  --button-bg-color:#331111;
+  --button-fill-color: #882727;
   --transition: 0.3s ease;
-}
-
-/* Теми: светла и тъмна */
-[data-theme="light"] {
-  --bg: var(--bg-light);
-  --text: var(--text-light);
-  --card-bg: var(--card-bg-light);
-}
-
-[data-theme="dark"] {
-  --bg: var(--bg-dark);
-  --text: var(--text-dark);
-  --card-bg: var(--card-bg-dark);
 }
 
 /* Ресет и box-sizing */
@@ -33,38 +17,36 @@
 
 /* Основни стилове на body */
 body {
-  font-family: 'Montserrat', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: background var(--transition), color var(--transition);
+  font-family: Arial, sans-serif;
+  background: var(--base-color);
+  color: var(--text-color);
+  transition: var(--transition), color var(--transition);
 }
 
 /* Навигационно меню */
 .navbar {
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  background-color:  #772424 ;
+  padding: 1% 1%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 100;
+  z-index: 10;
 }
 
 /* Контейнер за центриране */
 .container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 2%;
 }
 
 /* Лого с градиент */
 .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(var(--primary), var(--secondary));
+  font-size: 300%;
+  font-weight: 600;
+  background: linear-gradient(#e93407, #ff952b);
+  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -73,32 +55,59 @@ body {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 3%;
 }
 
 .nav-links a {
   text-decoration: none;
   font-weight: 600;
-  color: var(--text);
+  color:  #cd3744;
+  font-size:25px;
   transition: color var(--transition);
 }
 
 .nav-links a:hover {
-  color: var(--primary);
+  color:  #ec7404;
 }
-
+  .darkmode { /*dark-light mode*/
+    --base-color: rgb(24, 5, 5);
+    --secondary-color: #331111;
+    --text-color: rgb(253, 255, 219);
+    --button-bg-color:#882727;
+    --button-fill-color: #331111;
+  }
 /* Бутон за смяна на тема */
-#theme-toggle {
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: transform var(--transition);
+#theme-switch {
+    height:45px;
+    width:45px;
+    padding:0;
+    border-radius:50%;
+    background-color: var(--button-bg-color);
+    display:flex;
+    justify-content:center;
+    align-content:center;
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:1000;
+    transition: var(--transition);
 }
-
-#theme-toggle:hover {
+#theme-switch:hover {
   transform: rotate(20deg);
 }
+  #theme-switch svg{
+    fill: var(--button-fill-color);
+  }
+  #theme-switch svg:last-child{
+    display:none;
+  }
+  .darkmode #theme-switch svg:first-child{
+    display:none;
+  }
+  .darkmode #theme-switch svg:last-child{
+    display:block;
+  }
+
 
 /* Секция за контакти */
 .contact-section {
@@ -111,13 +120,13 @@ body {
 
 /* Карта за формата */
 .contact-card {
-  background: var(--card-bg);
+  background: var(--secondary-color);
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   width: 90%;
   max-width: 500px;
-  transition: background var(--transition);
+  transition: var(--transition);
 }
 
 .contact-card h1 {
@@ -143,7 +152,7 @@ body {
   width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--base-color);
   border-radius: 6px;
   background: transparent;
   color: var(--text);
@@ -153,7 +162,7 @@ body {
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--secondary);
+  border-color: var(--secondary-color);
 }
 
 /* Брояч на символи */
@@ -167,7 +176,7 @@ body {
 /* Бутон за изпращане */
 .btn-submit {
   width: 100%;
-  background: var(--primary);
+  background:#e93407;
   color: #fff;
   border: none;
   padding: 0.75rem;
@@ -175,11 +184,11 @@ body {
   font-weight: 600;
   border-radius: 6px;
   cursor: pointer;
-  transition: background var(--transition);
+  transition: var(--transition);
 }
 
 .btn-submit:hover {
-  background: var(--secondary);
+  background: #ff952b ;
 }
 
 /* Обратна връзка при изпращане */
@@ -188,9 +197,3 @@ body {
   text-align: center;
   font-weight: 600;
 }
-
-
-
-
-
-
