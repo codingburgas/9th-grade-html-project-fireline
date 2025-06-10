@@ -1,14 +1,21 @@
+
+:root{
+  --base-color: #dfcba1;
+  --secondary-color: #c4b390;
+  --text-color: black;
+  --button-bg-color:#331111;
+  --button-fill-color: #882727;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
+body {
   font-family: Arial, sans-serif;
-  background: hsl(0, 91%, 21%);
-  color: rgb(0, 0, 0);
+  background-color: var(--base-color);
+  color: var(--text-color);
   text-align: center;
 }
 
@@ -19,7 +26,7 @@ html, body {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .nav-container {
@@ -54,22 +61,44 @@ html, body {
 .nav-links a:hover {
   color: #ec7404;
 }
+  .darkmode { /*dark-light mode*/
+    --base-color: rgb(24, 5, 5);
+    --secondary-color: #331111;
+    --text-color: rgb(253, 255, 219);
+    --button-bg-color:#882727;
+    --button-fill-color: #331111;
+  }
 
 #theme-switch {
-  font-size: 18px;
-  background-color: #d32f2f;
-  color: #fff9f9;
-  border: none;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
+    height:45px;
+    width:45px;
+    padding:0;
+    border-radius:50%;
+    background-color: var(--button-bg-color);
+    display:flex;
+    justify-content:center;
+    align-content:center;
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:11;
 }
-
+  #theme-switch svg{
+    fill: var(--button-fill-color);
+  }
+  #theme-switch svg:last-child{
+    display:none;
+  }
+  .darkmode #theme-switch svg:first-child{
+    display:none;
+  }
+  .darkmode #theme-switch svg:last-child{
+    display:block;
+  }
 .header1 {
-  margin-top: 120px;
-  font-size: 400%;
-  letter-spacing: 2px;
+  margin-top: 200px;
+  font-size: 85px;
+  letter-spacing: 4px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
@@ -83,7 +112,7 @@ html, body {
 }
 
 .box {
-  background-color: #c4b390;
+  background-color: var(--secondary-color);
   padding: 3%;
   border-radius: 12px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
@@ -112,40 +141,9 @@ html, body {
 }
 
 footer {
-  background-color: #c4b390;
-  color: black;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   padding: 2%;
   font-size: 90%;
-  margin-top: 40px;
-}
-
-.darkmode body {
-  background-color: #181818;
-  color: #f1f1f1;
-}
-
-.darkmode .navbar {
-  background-color: #331111;
-}
-
-.darkmode .nav-links a {
-  color: #ff8a8a;
-}
-
-.darkmode .nav-links a:hover {
-  color: #ffa04d;
-}
-
-.darkmode .box {
-  background-color: #403730;
-  color: #f1f1f1;
-}
-
-.darkmode footer {
-  background-color: #8f6161;
-}
-
-.darkmode #theme-switch {
-  background-color: #ffcc00;
-  color: #000;
+  margin-top: 170px;
 }
