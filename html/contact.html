@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="bg" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Fireline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/contact.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">Fireline</div>
+      <ul class="nav-links">
+        <li><a href="homeA.php">Home</a></li>
+        <li><a href="incidents.html">Incidents</a></li>
+        <li><a href="map.html">Map</a></li>
+        <li><a href="personnel.html">Personnel</a></li>
+        <li><a href="vehicles.html">Vehicles</a></li>
+        <li><a href="teams.html">Teams</a></li>
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="messages.html">Messages</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <main class="contact-section">
+    <div class="contact-card">
+      <h1>Contact Us</h1>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" type="text" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input id="subject" type="text" name="subject" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" maxlength="500" required></textarea>
+          <div class="char-count"><span id="char-count">0</span>/500</div>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+      <div id="form-feedback"></div>
+    </div>
+  </main>
+
+  <script src="../javascript/contact.js"></script>
+</body>
+</html>

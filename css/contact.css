@@ -1,0 +1,241 @@
+/* Коренни променливи и цветова схема */
+:root {
+  --primary: #e93407;
+  --secondary: #ff952b;
+  --bg-light: #f9f9f9;
+  --bg-dark: #222222;
+  --card-bg-light: rgba(255,255,255,0.9);
+  --card-bg-dark: rgba(20,20,20,0.9);
+  --text-light: #222222;
+  --text-dark: #eeeeee;
+  --transition: 0.3s ease;
+}
+
+/* Теми: светла и тъмна */
+[data-theme="light"] {
+  --bg: var(--bg-light);
+  --text: var(--text-light);
+  --card-bg: var(--card-bg-light);
+}
+
+[data-theme="dark"] {
+  --bg: var(--bg-dark);
+  --text: var(--text-dark);
+  --card-bg: var(--card-bg-dark);
+}
+
+/* Ресет и box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Основни стилове на body */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+}
+
+/* Навигационно меню */
+.navbar {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+/* Контейнер за центриране */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Лого с градиент */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Линкове в навигацията */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--text);
+  transition: color var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* Бутон за смяна на тема */
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+
+#theme-toggle:hover {
+  transform: rotate(20deg);
+}
+
+/* Секция за контакти */
+.contact-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 5rem;
+}
+
+/* Карта за формата */
+.contact-card {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 500px;
+  transition: background var(--transition);
+}
+
+.contact-card h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* Групи за полета във формата */
+.form-group {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  transition: border-color var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+/* Брояч на символи */
+.char-count {
+  text-align: right;
+  font-size: 0.875rem;
+  color: var(--text);
+  margin-top: 0.25rem;
+}
+
+/* Бутон за изпращане */
+.btn-submit {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.btn-submit:hover {
+  background: var(--secondary);
+}
+
+/* Обратна връзка при изпращане */
+#form-feedback {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  const savedTheme = localStorage.getItem('theme');
+  const initialTheme = savedTheme || 'light';
+  html.setAttribute('data-theme', initialTheme);
+  toggle.textContent = initialTheme === 'light' ? '🌙' : '☀️';
+
+  toggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    toggle.textContent = next === 'light' ? '🌙' : '☀️';
+    localStorage.setItem('theme', next);
+  });
+
+  const messageField = document.getElementById('message');
+  const countDisplay = document.getElementById('char-count');
+  messageField.addEventListener('input', () => {
+    countDisplay.textContent = messageField.value.length;
+  });
+
+  const form = document.querySelector('.contact-form');
+  const feedback = document.getElementById('form-feedback');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const { name, email, subject, message } = form;
+    if (!name.value.trim() || !email.value.trim() || !subject.value.trim() || !message.value.trim()) {
+      feedback.textContent = 'Моля, попълнете всички полета.';
+      feedback.style.color = 'red';
+      return;
+    }
+    feedback.textContent = 'Изпращане...';
+    feedback.style.color = '';
+    form.querySelector('.btn-submit').disabled = true;
+
+    setTimeout(() => {
+      feedback.textContent = `Благодаря, ${name.value.trim()}! Съобщението е изпратено.`;
+      feedback.style.color = 'green';
+      form.reset();
+      countDisplay.textContent = '0';
+      form.querySelector('.btn-submit').disabled = false;
+    }, 1000);
+  });
+});
