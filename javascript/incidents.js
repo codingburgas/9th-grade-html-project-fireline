@@ -133,3 +133,5 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Incident added.');
   });
 });
+
+
