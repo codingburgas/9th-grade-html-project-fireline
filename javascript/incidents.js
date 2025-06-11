@@ -5,15 +5,97 @@ document.addEventListener('DOMContentLoaded', () => {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  let selectedCoords = null;
+  const icons = {
+    fire: new L.Icon({
+      iconUrl: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32]
+    }),
+    accident: new L.Icon({
+      iconUrl: 'https://maps.gstatic.com/mapfiles/ms2/micons/blue-dot.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32]
+    }),
+    flood: new L.Icon({
+      iconUrl: 'https://maps.gstatic.com/mapfiles/ms2/micons/green-dot.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32]
+    })
+  };
 
+  let markers = [];
+
+  const presetIncidents = [
+    { title: "Crash near Burgas port", type: "accident", coords: [42.497, 27.472] },
+    { title: "Pileup on Hemus highway", type: "accident", coords: [43.067, 25.65] },
+    { title: "Vehicle crash near Montana", type: "accident", coords: [43.409, 23.225] },
+    { title: "Bus incident near Blagoevgrad", type: "accident", coords: [42.016, 23.1] },
+    { title: "Major collision in Plovdiv center", type: "accident", coords: [42.141, 24.748] },
+    { title: "Accident at Sofia Ring Road", type: "accident", coords: [42.683, 23.333] },
+    { title: "Serious accident near Veliko Tarnovo", type: "accident", coords: [43.08, 25.63] }
+  ];
+
+  const accidentList = document.getElementById('accidentItems');
+
+  function addIncidentToMap(incident, status = 'Reported') {
+    const marker = L.marker(incident.coords, { icon: icons[incident.type] }).addTo(map);
+    marker.bindPopup(`
+      <strong>${incident.title}</strong><br>
+      Type: ${incident.type}<br>
+      <span class="marker-status" style="color:${status === 'Resolved' ? 'green' : 'orange'};"><strong>${status}</strong></span>
+    `);
+    markers.push({ marker, status });
+    return marker;
+  }
+
+  function addIncidentToSidebar(incident, markerIndex) {
+    const id = markerIndex;
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <strong>${incident.title}</strong><br>
+      <span id="status-${id}" style="color:orange;">Reported</span>
+      <button class="status-btn" data-id="${id}">Change Status</button>
+    `;
+    accidentList.appendChild(li);
+  }
+
+  presetIncidents.forEach((incident, index) => {
+    addIncidentToMap(incident, 'Reported');
+    addIncidentToSidebar(incident, index);
+  });
+
+  accidentList.addEventListener('click', (e) => {
+    if (e.target.classList.contains('status-btn')) {
+      const id = e.target.getAttribute('data-id');
+      const statusEl = document.getElementById(`status-${id}`);
+      const markerObj = markers[id];
+      const popupContent = markerObj.marker.getPopup().getContent();
+
+      let newStatus = '';
+      if (statusEl.textContent === 'Reported') {
+        newStatus = 'Resolved';
+        statusEl.textContent = 'Resolved';
+        statusEl.style.color = 'green';
+      } else {
+        newStatus = 'Reported';
+        statusEl.textContent = 'Reported';
+        statusEl.style.color = 'orange';
+      }
+
+      const updatedPopup = popupContent.replace(
+        /<span class="marker-status".*?<\/span>/,
+        `<span class="marker-status" style="color:${newStatus === 'Resolved' ? 'green' : 'orange'};"><strong>${newStatus}</strong></span>`
+      );
+      markerObj.marker.setPopupContent(updatedPopup);
+      markerObj.status = newStatus;
+    }
+  });
+
+  // Reporting incidents
+  let selectedCoords = null;
   map.on('click', function (e) {
     selectedCoords = e.latlng;
-
-    L.popup()
-      .setLatLng(selectedCoords)
-      .setContent("Location selected")
-      .openOn(map);
+    L.popup().setLatLng(selectedCoords).setContent("Location selected").openOn(map);
   });
 
   document.getElementById('addBtn').addEventListener('click', () => {
@@ -28,19 +110,24 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    L.marker([selectedCoords.lat, selectedCoords.lng])
-      .addTo(map)
-      .bindPopup(`
-        <strong>${title}</strong><br>
-        ${description}<br>
-        Severity: ${severity}<br>
-        People Affected: ${people}<br>
-        Type: ${type}<br>
-        <span style="color:orange;"><strong>Reported</strong></span>
-      `)
-      .openPopup();
+    const incident = {
+      title,
+      type,
+      coords: [selectedCoords.lat, selectedCoords.lng]
+    };
 
-    alert('Incident added.');
+    const markerIndex = markers.length;
+    const marker = addIncidentToMap(incident, 'Reported');
+    addIncidentToSidebar(incident, markerIndex);
+
+    marker.bindPopup(`
+      <strong>${title}</strong><br>
+      ${description}<br>
+      Severity: ${severity}<br>
+      People Affected: ${people}<br>
+      Type: ${type}<br>
+      <span class="marker-status" style="color:orange;"><strong>Reported</strong></span>
+    `);
 
     document.getElementById('markerTitle').value = '';
     document.getElementById('description').value = '';
@@ -48,60 +135,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('people').value = '';
     document.getElementById('type').value = 'fire';
     selectedCoords = null;
-  });
-
-  // === Predefined incidents ===
-  const icons = {
-    fire: new L.Icon({
-      iconUrl: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -30]
-    }),
-    accident: new L.Icon({
-      iconUrl: 'https://maps.gstatic.com/mapfiles/ms2/micons/blue-dot.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -30]
-    }),
-    flood: new L.Icon({
-      iconUrl: 'https://maps.gstatic.com/mapfiles/ms2/micons/green-dot.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -30]
-    })
-  };
-
-  const presetIncidents = [
-    { title: "Forest fire near Rila Mountains", type: "fire", coords: [42.133, 23.433] },
-    { title: "Wildfire in Central Balkan", type: "fire", coords: [42.733, 24.933] },
-    { title: "Blaze near Devin", type: "fire", coords: [41.741, 24.391] },
-    { title: "Fire outbreak near Gotse Delchev", type: "fire", coords: [41.567, 23.717] },
-    { title: "Wildfire close to Belogradchik Rocks", type: "fire", coords: [43.623, 22.683] },
-
-    { title: "Flooding in Lom near Danube River", type: "flood", coords: [43.813, 23.241] },
-    { title: "Flood near Svilengrad (Maritsa River)", type: "flood", coords: [41.767, 26.2] },
-    { title: "Overflow near Kardzhali Dam", type: "flood", coords: [41.65, 25.367] },
-    { title: "Village flooded near Iskar River", type: "flood", coords: [43.1, 23.533] },
-    { title: "Flood incident in Silistra (Danube)", type: "flood", coords: [44.117, 27.267] },
-
-    { title: "Car crash on A1 Trakia Highway", type: "accident", coords: [42.2, 25.0] },
-    { title: "Accident at Sofia Ring Road", type: "accident", coords: [42.683, 23.333] },
-    { title: "Major collision in Plovdiv center", type: "accident", coords: [42.141, 24.748] },
-    { title: "Bus incident near Blagoevgrad", type: "accident", coords: [42.016, 23.1] },
-    { title: "Vehicle crash near Montana", type: "accident", coords: [43.409, 23.225] },
-    { title: "Pileup on Hemus highway", type: "accident", coords: [43.067, 25.65] },
-    { title: "Crash near Burgas port", type: "accident", coords: [42.497, 27.472] },
-    { title: "Serious accident near Veliko Tarnovo", type: "accident", coords: [43.08, 25.63] }
-  ];
-
-  presetIncidents.forEach(incident => {
-    L.marker(incident.coords, { icon: icons[incident.type] })
-      .addTo(map)
-      .bindPopup(`
-        <strong>${incident.title}</strong><br>
-        Type: ${incident.type}<br>
-        <span style="color:green;"><strong>Resolved</strong></span>
-      `);
   });
 });
