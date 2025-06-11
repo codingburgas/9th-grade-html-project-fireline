@@ -1,3 +1,25 @@
+let darkmode = localStorage.getItem('darkmode')
+const themeswitch = document.getElementById('theme-switch')
+
+const enableDarkMode = () =>
+{
+  document.body.classList.add('darkmode')
+  localStorage.setItem('darkmode', 'active')
+}
+const disableDarkMode = () =>
+{
+  document.body.classList.remove('darkmode')
+  localStorage.setItem('darkmode', null)
+}
+
+if(darkmode === 'active') enableDarkMode()
+
+themeswitch.addEventListener("click", () => {
+  darkmode = localStorage.getItem('darkmode')
+  darkmode !== "active" ? enableDarkMode() : disableDarkMode()
+})
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const map = L.map('map').setView([42.7, 25.3], 7);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
