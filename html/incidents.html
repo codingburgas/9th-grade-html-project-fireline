@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Incidents</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <title>Fireline — Текущи произшествия & Картата</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
   <link rel="stylesheet" href="../css/incidents.css" />
+  <link rel="stylesheet" href="../css/currentincidents.css" />
 </head>
 <body>
   <div class="app-container">
@@ -28,59 +32,55 @@
     </header>
 
     <main class="app-main">
-      <!-- Sidebar -->
-      <aside class="sidebar" id="accidentList">
-        <h2>Current Accidents</h2>
-        <ul id="accidentItems"></ul>
-      </aside>
-
-      <!-- Right column: map + form -->
-      <div class="map-wrapper">
-        <!-- Map -->
+      <section class="map-section">
         <div id="map"></div>
+      </section>
 
-        <!-- Report form below the map -->
-        <section class="form-below-map">
-          <div class="form-card">
-            <h2>Report Incident</h2>
+      <aside class="form-section visible" id="formSection">
+        <div class="form-card">
+          <h2>Report Incident</h2>
+          <div class="form-group">
+            <label for="markerTitle">Title</label>
+            <input id="markerTitle" type="text" placeholder="Enter incident title" />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" rows="4" placeholder="Describe the incident..."></textarea>
+          </div>
+          <div class="form-row">
             <div class="form-group">
-              <label for="markerTitle">Title</label>
-              <input id="markerTitle" type="text" placeholder="Enter incident title" />
-            </div>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea id="description" rows="4" placeholder="Describe the incident..."></textarea>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="severity">Severity</label>
-                <select id="severity">
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="people">People Affected</label>
-                <input id="people" type="number" min="0" placeholder="0" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="type">Type</label>
-              <select id="type">
-                <option value="fire">Fire</option>
-                <option value="accident">Accident</option>
-                <option value="flood">Flood</option>
+              <label for="severity">Severity</label>
+              <select id="severity">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
               </select>
             </div>
-            <button id="addBtn" class="btn-success">Submit</button>
+            <div class="form-group">
+              <label for="people">People Affected</label>
+              <input id="people" type="number" min="0" placeholder="0" />
+            </div>
           </div>
-        </section>
-      </div>
+          <div class="form-group">
+            <label for="type">Type</label>
+            <select id="type">
+              <option value="fire">Fire</option>
+              <option value="accident">Accident</option>
+              <option value="flood">Flood</option>
+            </select>
+          </div>
+          <button id="addBtn" class="btn-success">Submit</button>
+        </div>
+      </aside>
+      <aside class="incidents-container">
+        <h2 class="section-title">Current incidents</h2>
+        <div id="incidentsList" class="incident-list"></div>
+      </aside>
     </main>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="../javascript/incidents.js"></script>
+  <script src="../javascript/currentincidents.js"></script>
 </body>
 </html>
