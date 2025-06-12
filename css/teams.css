@@ -1,0 +1,41 @@
+:root{
+    --base-color: #dfcba1;
+    --secondary-color: #c4b390;
+    --text-color: #611212;
+    --button-bg-color:#331111;
+    --button-fill-color: #882727;
+  }
+
+  img{
+    border-radius: 15px;
+    max-width: 256px;
+    max-height: 384px;
+  }
+
+  h2, h3{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2px;
+  }
+
+  .firefighter{
+    background-color: var(--secondary-color);
+    padding: 1%;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .firefighter-grid{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 150px;
+    padding: 100px;
+    margin-top: -50px;
+  }
+
+  .team-header {
+    margin-top: 25px;
+    font-size: 50px;
+    letter-spacing: 4px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
