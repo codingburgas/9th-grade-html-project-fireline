@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Incident Map</title>
   <link rel="stylesheet" href="../css/incidents.css" />
-  <link rel="stylesheet" href="../css/statistics.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 </head>
 <body>
   <div class="app-container">
@@ -23,14 +22,13 @@
             <li><a href="vehicles.html">Vehicles</a></li>
             <li><a href="teams.html">Teams</a></li>
             <div class="dropdown">
-              <button class="dropbtn">Statistics
-              </button>
+              <button class="dropbtn">Statistics</button>
               <div class="dropdown-content">
                 <a href="chartFires.html">Fires</a>
                 <a href="chartRegions.html">Regions</a>
                 <a href="chartAccidents.html">Accidents</a>
               </div>
-              </div>
+            </div>
             <li><a href="contact.html">Messages</a></li>
           </ul>
         </div>
@@ -39,24 +37,14 @@
 
     <main class="app-main">
       <section class="map-section">
-        <button id="reportBtn" class="btn-primary" onclick="window.location.href='incidents.html'">Add Incident</button>
+        <button id="reportBtn" onclick="window.location.href='incidents.html'">Add Incident</button>
         <div id="map"></div>
       </section>
-
-      <aside class="form-section visible">
-        <div class="form-card">
-          <h2>Legend</h2>
-          <div class="form-group">
-            <p>🔥 Fire</p>
-            <p>🚗 Accident</p>
-            <p>🌊 Flood</p>
-          </div>
-        </div>
-      </aside>
     </main>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <script src="../javascript/map.js"></script>
 </body>
 </html>
