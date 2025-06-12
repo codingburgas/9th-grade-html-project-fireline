@@ -5,19 +5,24 @@ session_start();
 $errors = [
     'login' => $_SESSION['login_error'] ?? '',
     'register' => $_SESSION['register_error'] ?? ''
-];
+    //null coalescing operator says that if the session entry exists and is different from null, use it, otherwise use an empty string
+    //check if login or register was last active
+  ];
 $activeForm = $_SESSION['active_form'] ?? 'login';
+//if register is stored it becomes active form, otherwise it is login by default
 
 session_unset();
+//remove all variables from session so the error won't show again after you load a page
 
 function showError($error){
     return !empty($error) ? "<p class='error-message'>$error</p>" : '';
 }
+//if $error is empty, it won't proceed with the code in the curly brackets, if it's not empty, it will load an error message
 
 function isActiveForm($formName, $activeForm){
     return $formName === $activeForm ? 'active' : '';
-}
-
+    //if a string 'active' is returned, the corresponding form from formName is revealed
+  }  
 ?>
 
 
@@ -29,7 +34,8 @@ function isActiveForm($formName, $activeForm){
   <title>Fireline Main Page</title>
   <link rel="stylesheet" href="../css/style.css"/>
   <link rel="stylesheet" href="../css/statistics.css"/>
-  <script defer src="../javascript/script.js"></script>
+  <script defer src="../javascript/loginRegister.js"></script>
+  <
 </head>
 <body>
   <nav class="navbar">
@@ -52,8 +58,8 @@ function isActiveForm($formName, $activeForm){
     </div>
     </div>
         <li><a href="../html/contact.html">Messages</a></li>
-        <li><a href="../html/settings.html">Settings</a></li>
       </ul>
+      <button class="dropbtn" onclick="window.location.href='logout.php'">Log out</button>
     </div>
   </nav>
   <button id="theme-switch" >

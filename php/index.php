@@ -5,17 +5,23 @@ session_start();
 $errors = [
     'login' => $_SESSION['login_error'] ?? '',
     'register' => $_SESSION['register_error'] ?? ''
+    //null coalescing operator says that if the session entry exists and is different from null, use it, otherwise use an empty string
+    //check if login or register was last active
 ];
 $activeForm = $_SESSION['active_form'] ?? 'login';
+//default to login if nothing is stored
 
 session_unset();
+//remove all variables from session so the error won't show again after you load a page
 
 function showError($error){
     return !empty($error) ? "<p class='error-message'>$error</p>" : '';
 }
+//if $error is empty, it won't proceed with the code in the curly brackets, if it's not empty, it will load an error message
 
 function isActiveForm($formName, $activeForm){
     return $formName === $activeForm ? 'active' : '';
+    //if a string 'active' is returned, the corresponding form from formName is revealed
 }
 
 ?>
@@ -28,7 +34,7 @@ function isActiveForm($formName, $activeForm){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <link rel="stylesheet" href="../css/logIn.css">
-    <script src="../javascript/script.js"></script>
+    <script src="../javascript/loginRegister.js"></script>
 </head>
 <body class="LRPage">
 
