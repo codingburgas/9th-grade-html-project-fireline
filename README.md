@@ -1,6 +1,6 @@
 <h1 align="center"> Fireline </h1>
 <p align="center">
-  <img src="#" alt="Fireline Logo" width="45%">
+  <img src="assets/logo.jpeg" alt="Fireline Logo" width="45%">
 </p>
 
 
@@ -19,16 +19,10 @@
  ---
 
 ## 📌 Table of contents
-- [About the Project](#about)
 - [Documentation](#docs)
 - [Installation & Setup](#install)
 - [Tech Stack](#technologies)
 - [Contributors](#team)
-
----
-
-## 🔍 Description <a name="about"></a>
-#
 
 ---
 
