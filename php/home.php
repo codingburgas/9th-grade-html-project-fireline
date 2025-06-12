@@ -28,6 +28,7 @@ function isActiveForm($formName, $activeForm){
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fireline Main Page</title>
   <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/statistics.css">
   <script defer src="../javascript/script.js"></script>
 </head>
 <body>
@@ -41,7 +42,15 @@ function isActiveForm($formName, $activeForm){
         <li><a href="../html/personnel.html">Personnel</a></li>
         <li><a href="../html/vehicles.html">Vehicles</a></li>
         <li><a href="../html/teams.html">Teams</a></li>
-        <li><a href="../html/statistics.html">Statistics</a></li>
+        <div class="dropdown">
+    <button class="dropbtn">Statistics
+    </button>
+    <div class="dropdown-content">
+      <a href="../html/chartFires.html">Fires</a>
+      <a href="../html/chartRegions.html">Regions</a>
+      <a href="../html/chartAccidents.html">Accidents</a>
+    </div>
+    </div>
         <li><a href="../html/contact.html">Messages</a></li>
         <li><a href="../html/settings.html">Settings</a></li>
       </ul>

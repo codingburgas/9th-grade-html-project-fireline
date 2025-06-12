@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Incident Map</title>
   <link rel="stylesheet" href="../css/incidents.css" />
+  <link rel="stylesheet" href="../css/statistics.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
@@ -21,7 +22,15 @@
             <li><a href="personnel.html">Personnel</a></li>
             <li><a href="vehicles.html">Vehicles</a></li>
             <li><a href="teams.html">Teams</a></li>
-            <li><a href="statistics.html">Statistics</a></li>
+            <div class="dropdown">
+              <button class="dropbtn">Statistics
+              </button>
+              <div class="dropdown-content">
+                <a href="chartFires.html">Fires</a>
+                <a href="chartRegions.html">Regions</a>
+                <a href="chartAccidents.html">Accidents</a>
+              </div>
+              </div>
             <li><a href="contact.html">Messages</a></li>
           </ul>
         </div>

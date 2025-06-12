@@ -1,0 +1,230 @@
+
+:root{
+    --base-color: #dfcba1;
+    --secondary-color: #c4b390;
+    --text-color: #611212;
+    --button-bg-color:#331111;
+    --button-fill-color: #882727;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--base-color);
+    color: var(--text-color);
+    text-align: center;
+  }
+  
+  .navbar {
+    background-color:  #611212;
+    padding: 1% 1%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+  }
+  
+  .logo {
+    font-size: 300%;
+    font-weight: 600;
+    background: linear-gradient(#e93407, #ff952b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 3%;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #cd3744;
+    font-weight: bold;
+    font-size: 25px;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #ec7404;
+  }
+    .darkmode { /*dark-light mode*/
+      --base-color: rgb(24, 5, 5);
+      --secondary-color: #331111;
+      --text-color: rgb(253, 255, 219);
+      --button-bg-color:#882727;
+      --button-fill-color: #331111;
+    }
+  
+  #theme-switch {
+      height:45px;
+      width:45px;
+      padding:0;
+      border-radius:50%;
+      background-color: var(--button-bg-color);
+      display:flex;
+      justify-content:center;
+      align-content:center;
+      position:fixed;
+      top:20px;
+      right:20px;
+      z-index:11;
+  }
+    #theme-switch svg{
+      fill: var(--button-fill-color);
+    }
+    #theme-switch svg:last-child{
+      display:none;
+    }
+    .darkmode #theme-switch svg:first-child{
+      display:none;
+    }
+    .darkmode #theme-switch svg:last-child{
+      display:block;
+    }
+  .header1 {
+    margin-top: 150px;
+    font-size: 85px;
+    letter-spacing: 4px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+  .header2 {
+    margin-top: 200px;
+    font-size: 35px;
+    letter-spacing: 4px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  
+  .grid-container1,
+  .grid-container2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    gap: 2%;
+    padding: 2% 5%;
+    margin: 2% auto;
+  }
+  
+  .box {
+    background-color: var(--secondary-color);
+    padding: 3%;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+  }
+  
+  .box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .box h1 {
+    font-size: 210%;
+    margin-bottom: 10px;
+  }
+  
+  .box p {
+    font-size: 110%;
+    margin-top: 1%;
+    line-height: 1.7;
+  }
+  
+  .par {
+    margin: 2% 10%;
+    font-size: 140%;
+  }
+  
+  footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 2%;
+    font-size: 90%;
+    margin-top: 170px;
+  }
+  
+  .dropdown .dropbtn {
+    text-decoration: none;
+    color: #cd3744;
+    font-weight: bold;
+    font-size: 25px;
+    transition: color 0.3s;
+    background: transparent;
+    border:none;
+    float:left;
+  }
+  .dropbtn:hover{
+    color: #ec7404;
+  }
+  .dropdown-content {
+      margin-top:30px;
+    font-size:20px;
+    display: none;
+    position: absolute;
+    background-color:#611212;
+    min-width: 160px;
+    z-index: 0;
+  }
+  .dropdown-content a {
+    float: none;
+    color: #cd3744;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    background-color: #cd3744;
+    color: #611212;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .navbar-charts {
+    background: #333;
+    padding: 10px;
+    display: flex;
+  }
+  
+  .navbar-charts a {
+    color: white;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .chart-section {
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .chart-box {
+    background: #251c35;
+    border: 1px solid #f49131;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
